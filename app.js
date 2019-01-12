@@ -1,21 +1,29 @@
 console.log("Starting app");
 
-const fs= require("fs");
-const os = require('os');
-const _= require("lodash"); //note checks core module, then the local node_modules
-const notes= require('./notes.js');
+const fs = require("fs");
+const os = require("os");
+const _ = require("lodash"); //note checks core module, then the local node_modules
+const yargs = require("yargs");
+const notes = require("./notes.js");
 
-var filter
-var user =  os.userInfo();
-// console.log(user);
+//console.log(process.argv);
 
-//console.log(notes);
+const argv = yargs.argv;
+// console.log(process.argv);
+// console.log(argv);
 
-var res =  notes.addNote();
-console.log(res);
+var command = process.argv[2];
+console.log("command", command); // all the arguments
 
-console.log(notes.add(1,1));
-
-// fs.appendFile('greeting.txt', `hello  ${user.username}  you are ${notes.age}`, function(err){
-
-// });
+if (command === "add") {
+  console.log("Adding new notes");
+  notes.addNote(argv.title, argv.body);
+} else if (command === "list") {
+  console.log("Listing all notes");
+} else if (command === "remove") {
+  console.log("remove all notes");
+} else if (command === "read") {
+  console.log("read all notes");
+} else {
+  console.log("Command not recognized");
+}
