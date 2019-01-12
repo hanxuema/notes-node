@@ -12,21 +12,31 @@ const argv = yargs.argv;
 // console.log(process.argv);
 // console.log(argv);
 
-var command = argv._[0];;
+var command = argv._[0];
 console.log("command", command); // all the arguments
 
 if (command === "add") {
   console.log("Adding new notes");
-  notes.addNote(argv.title, argv.body);
+  var note = notes.addNote(argv.title, argv.body);
+  if (note === null) {
+    console.log("note is duplicated");
+  } else {
+    console.log("new note has been added");
+  }
 } else if (command === "list") {
   console.log("Listing all notes");
   notes.getAllNotes();
 } else if (command === "remove") {
   console.log("remove all notes");
-  notes.getNote(argv.title);
+  var res = notes.removeNote(argv.title);
+  if (res === 0) {
+    console.log(`remove 0`);
+  } else {
+    console.log(`remove ${res} notes`);
+  }
 } else if (command === "read") {
   console.log("read all notes");
-  notes.removeNote(argv.title);
+  notes.getNote(argv.title);
 } else {
   console.log("Command not recognized");
 }
