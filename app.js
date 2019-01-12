@@ -12,7 +12,7 @@ const argv = yargs.argv;
 // console.log(process.argv);
 // console.log(argv);
 
-var command = process.argv[2];
+var command = argv._[0];;
 console.log("command", command); // all the arguments
 
 if (command === "add") {
@@ -20,10 +20,13 @@ if (command === "add") {
   notes.addNote(argv.title, argv.body);
 } else if (command === "list") {
   console.log("Listing all notes");
+  notes.getAllNotes();
 } else if (command === "remove") {
   console.log("remove all notes");
+  notes.getNote(argv.title);
 } else if (command === "read") {
   console.log("read all notes");
+  notes.removeNote(argv.title);
 } else {
   console.log("Command not recognized");
 }

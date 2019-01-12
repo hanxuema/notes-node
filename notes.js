@@ -18,6 +18,21 @@ var addNote = (title, body) => {
   console.log("Adding note ", title, body);
 };
 
+var getAllNotes = () =>{
+  console.log("Getting all notes");
+};
+
+var getNote = (title) =>{
+  console.log("Getting 1 note " + title);
+};
+
+var removeNote = (title) =>{
+  console.log("Removing 1 note "+ title);
+};
+
 module.exports = {
-  addNote: addNote
+  addNote: addNote,
+  getAllNotes:getAllNotes,
+  getNote: getNote,
+  removeNote: removeNote
 };
